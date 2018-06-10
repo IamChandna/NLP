@@ -69,7 +69,7 @@ def load_inputs(folder, label, count, input_nn,targets):
             if file_count % (count/10) == 0:
                 print("=> processed", file_count, folder, "files.")
 
-            if file_count > count:
+            if file_count >= count:
                 break
     return input_nn,targets
 

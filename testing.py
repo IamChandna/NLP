@@ -25,20 +25,26 @@ if __name__ == '__main__':
         targets_shuffle.append(targets[i])
 
     num_categories = 2
+    # samples_per_category=1
     cutoff = int(float(samples_per_category * num_categories) * 2 / 3)
     input_nn_shuffle = np.array(input_nn_shuffle)
     targets_shuffle = np.array(targets_shuffle)
 
     input_nn_train = input_nn_shuffle[:cutoff]
     targets_train = targets_shuffle[:cutoff]
-
+    print(len(input_nn_train))
+    print(input_nn_train)
     input_nn_valid = input_nn_shuffle[cutoff:]
+    print(input_nn_train)
     targets_valid = targets_shuffle[cutoff:]
+    print(targets_valid)
 
     model = training.get_model(input_nn_train, targets_train)
 
     predict_train = model.predict(input_nn_train) > 0.5
-    print("training=", np.mean(np.array(predict_train[:, 0], dtype=int) == targets_train))
+    # print("training=", np.mean(np.array(predict_train[:, 0], dtype=int) == targets_train))
+    print(predict_train)
 
     predict_valid = model.predict(input_nn_valid) > 0.5
-    print("validation=", np.mean(np.array(predict_valid[:, 0], dtype=int) == targets_valid))
+    # print("validation=", np.mean(np.array(predict_valid[:, 0], dtype=int) == targets_valid))
+    print(predict_valid)
